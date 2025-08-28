@@ -7,11 +7,6 @@ import Link from "next/link"
 export default function GruposWhatsAppPage() {
   const grupos = [
     {
-      cidade: "Belém",
-      descricao: "Grupo oficial para participantes de Belém e região metropolitana",
-      link: "https://chat.whatsapp.com/FJoGeouNnKg68JZcHNAZCH",
-    },
-    {
       cidade: "Marabá",
       descricao: "Grupo oficial para participantes de Marabá e região",
       link: "https://chat.whatsapp.com/HLvLuXLvJbP0VAqyxW9Mt6",
