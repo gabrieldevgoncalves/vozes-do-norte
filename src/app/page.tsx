@@ -1029,7 +1029,7 @@ export default function HomePage() {
               Patrocínio Master
             </span>
             <Image
-              src="/images/sponsors/OLIVAL MARQUES.png"
+              src="/images/sponsors/OLIVAL.png"
               alt="Olival Marques"
               width={160}
               height={80}
