@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import Image from "next/image";
+import { get, post } from "@/lib/api"; 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Checkbox } from "@/components/ui/checkbox"
 import {
@@ -120,7 +121,7 @@ export default function HomePage() {
           controller.abort()
         }, 3000)
 
-        const response = await fetch("http://www.festivaldamusicagospelparaense/cities", {
+        const response = await fetch("/cities", {
           signal: controller.signal,
           headers: {
             Accept: "application/json",
@@ -256,7 +257,7 @@ export default function HomePage() {
         controller.abort()
       }, 8000)
 
-      const response = await fetch("http://www.festivaldamusicagospelparaense/participants", {
+      const response = await fetch("participants", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
