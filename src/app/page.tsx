@@ -1042,7 +1042,7 @@ export default function HomePage() {
                 Patrocínio Master
               </span>
               <Image
-                src="/images/OLIVAL.png"
+                src="/images/olival-marques.png"
                 alt="Olival Marques"
                 width={160}
                 height={80}
@@ -1064,7 +1064,7 @@ export default function HomePage() {
 
             <div className="flex justify-center">
               <Image
-                src="/images/BENEVIDES.png"
+                src="/images/prefeitura-benevides.png"
                 alt="Prefeitura de Benevides"
                 width={260}
                 height={80}
