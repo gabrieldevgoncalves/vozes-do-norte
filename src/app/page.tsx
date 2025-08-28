@@ -120,7 +120,7 @@ export default function HomePage() {
           controller.abort()
         }, 3000)
 
-        const response = await fetch("http://localhost:8080/cities", {
+        const response = await fetch("http://www.festivaldamusicagospelparaense/cities", {
           signal: controller.signal,
           headers: {
             Accept: "application/json",
@@ -256,7 +256,7 @@ export default function HomePage() {
         controller.abort()
       }, 8000)
 
-      const response = await fetch("http://localhost:8080/participants", {
+      const response = await fetch("http://www.festivaldamusicagospelparaense/participants", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
