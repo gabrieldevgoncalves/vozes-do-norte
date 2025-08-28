@@ -143,7 +143,6 @@ export default function HomePage() {
           { id: "550e8400-e29b-41d4-a716-446655440002", name: "Santarém" },
           { id: "550e8400-e29b-41d4-a716-446655440003", name: "Portel" },
           { id: "550e8400-e29b-41d4-a716-446655440004", name: "Benevides" },
-          { id: "550e8400-e29b-41d4-a716-446655440005", name: "Belém" },
         ]
         setCities(fallbackCities)
       } finally {
@@ -762,7 +761,7 @@ export default function HomePage() {
                 <div className="text-center">
                   <div className="w-32 h-32 sm:w-36 sm:h-36 lg:w-40 lg:h-40 rounded-full mx-auto bg-gray-300 border-4 border-[#FEB300] overflow-hidden mb-4">
                     <img
-                      src="/images/LEANDRO BORGES.png"
+                      src="/images/leandro-borges.png"
                       alt="Leandro Borges"
                       className="w-full h-full object-cover"
                     />
@@ -777,7 +776,7 @@ export default function HomePage() {
                 <div className="text-center">
                   <div className="w-32 h-32 sm:w-36 sm:h-36 lg:w-40 lg:h-40 rounded-full mx-auto bg-gray-300 border-4 border-[#FEB300] overflow-hidden mb-4">
                     <img
-                      src="/images/FERNANDA-BRUM.png"
+                      src="/images/fernanda-brum.png"
                       alt="Fernanda Brum"
                       className="w-full h-full object-cover"
                     />
@@ -792,7 +791,7 @@ export default function HomePage() {
                 <div className="text-center">
                   <div className="w-32 h-32 sm:w-36 sm:h-36 lg:w-40 lg:h-40 rounded-full mx-auto bg-gray-300 border-4 border-[#FEB300] overflow-hidden mb-4">
                     <img
-                      src="/images/PR LUCAS.png"
+                      src="/images/pr-lucas.png"
                       alt="Pastor Lucas"
                       className="w-full h-full object-cover"
                     />
@@ -807,7 +806,7 @@ export default function HomePage() {
                 <div className="text-center">
                   <div className="w-32 h-32 sm:w-36 sm:h-36 lg:w-40 lg:h-40 rounded-full mx-auto bg-gray-300 border-4 border-[#FEB300] overflow-hidden mb-4">
                     <img
-                      src="/images/ANDRE E FELIPE.png"
+                      src="/images/andre-e-felipe.png"
                       alt="André e Felipe"
                       className="w-full h-full object-cover"
                     />
@@ -831,7 +830,7 @@ export default function HomePage() {
                 <div className="text-center">
                   <div className="w-32 h-32 sm:w-36 sm:h-36 lg:w-40 lg:h-40 rounded-full mx-auto bg-gray-300 border-4 border-[#FEB300] overflow-hidden mb-4">
                     <img
-                      src="/images/ESTHER FIAUX.png"
+                      src="/images/esther-fiaux.png"
                       alt="Esther Fiaux"
                       className="w-full h-full object-cover"
                     />
@@ -846,7 +845,7 @@ export default function HomePage() {
                 <div className="text-center">
                   <div className="w-32 h-32 sm:w-36 sm:h-36 lg:w-40 lg:h-40 rounded-full mx-auto bg-gray-300 border-4 border-[#FEB300] overflow-hidden mb-4">
                     <img
-                      src="/images/QUATRO POR UM.png"
+                      src="/images/quatro-por-um.png"
                       alt="Quatro Por Um"
                       className="w-full h-full object-cover"
                     />
@@ -861,7 +860,7 @@ export default function HomePage() {
                 <div className="text-center col-span-2 md:col-span-1 mx-auto">
                   <div className="w-32 h-32 sm:w-36 sm:h-36 lg:w-40 lg:h-40 rounded-full mx-auto bg-gray-300 border-4 border-[#FEB300] overflow-hidden mb-4">
                     <img
-                      src="/images/ANDERSON FREIRE.png"
+                      src="/images/anderson-freire.png"
                       alt="Anderson Freire"
                       className="w-full h-full object-cover"
                     />
@@ -1003,7 +1002,7 @@ export default function HomePage() {
               </div>
               <p className="text-[#1a237e] text-base sm:text-lg leading-relaxed">
                 O vencedor do Festival da Música Paraense 2025 terá sua música gravada e lançada profissionalmente pela{" "}
-                <span className="font-bold">Gravadora Todah Music</span>, além de um contrato com a agência<br></br>{" "}
+                <span className="font-bold">Gravadora Todah Music</span>, além de um contrato com a agência{" "}
                 <span className="font-bold">Vende Shows. </span>
                 (do 2º ao 5º lugar terão premiação em dinheiro e troféu)
               </p>
