@@ -22,7 +22,7 @@ import {
   Medal,
   CheckCircle,
   Calendar,
-  Instagram,
+  FileText,
   Menu,
   X,
 } from "lucide-react"
@@ -346,9 +346,8 @@ export default function HomePage() {
       </div>
 
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 bg-[#1a237e]/95 backdrop-blur-sm transition-transform duration-300 ${
-          isNavVisible ? "translate-y-0" : "-translate-y-full"
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 bg-[#1a237e]/95 backdrop-blur-sm transition-transform duration-300 ${isNavVisible ? "translate-y-0" : "-translate-y-full"
+          }`}
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="flex items-center justify-center h-16">
@@ -525,7 +524,7 @@ export default function HomePage() {
               </div>
               <h3 className="text-base sm:text-lg lg:text-xl font-bold text-[#FEB300] mb-2">5 Cidades</h3>
               <p className="text-white/90 text-xs sm:text-sm">
-                Etapas em Benevides, Santarém, Portel, Marituba e grande final em Belém
+                Etapas em Benevides, Santarém, Portel, Marabá e grande final em Belém
               </p>
             </div>
           </div>
@@ -547,7 +546,7 @@ export default function HomePage() {
                 sua música.
               </p>
               <p>
-                Mais do que uma competição, o Vozes do Norte é um movimento de união, fé e celebração da rica tradição
+                Mais do que uma competição, o Festival da Música Gospel Paraense é um movimento de união, fé e celebração da rica tradição
                 musical gospel do Norte do Brasil.
               </p>
             </div>
@@ -559,8 +558,7 @@ export default function HomePage() {
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-[#FEB300] mb-4 sm:mb-6">Inscreva-se Agora</h2>
           <p className="text-base sm:text-lg lg:text-xl text-white/90 mb-6 sm:mb-8 lg:mb-12 max-w-3xl mx-auto">
-            Não perca a oportunidade de participar do maior festival de música gospel do Pará! Inscreva-se e mostre seu
-            talento para o mundo.
+            Não perca a oportunidade de participar do maior festival de música gospel do Pará! Inscreva-se e faça o Brasil ouvir louvores.
           </p>
 
           <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
@@ -575,7 +573,7 @@ export default function HomePage() {
             </DialogTrigger>
             <DialogContent className="sm:max-w-md w-[95vw] max-w-[400px] mx-auto max-h-[90vh] overflow-y-auto">
               <DialogHeader>
-                <DialogTitle className="text-[#1a237e]">Inscrição - Vozes do Norte</DialogTitle>
+                <DialogTitle className="text-[#1a237e]">Inscrição - Festival da Música Gospel Paraense</DialogTitle>
               </DialogHeader>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-2">
@@ -629,13 +627,12 @@ export default function HomePage() {
                   />
                   {ageValidation.message && (
                     <p
-                      className={`text-xs mt-1 ${
-                        ageValidation.isValid
-                          ? ageValidation.needsAuthorization
-                            ? "text-orange-600"
-                            : "text-green-600"
-                          : "text-red-600"
-                      }`}
+                      className={`text-xs mt-1 ${ageValidation.isValid
+                        ? ageValidation.needsAuthorization
+                          ? "text-orange-600"
+                          : "text-green-600"
+                        : "text-red-600"
+                        }`}
                     >
                       {ageValidation.message}
                     </p>
@@ -747,7 +744,7 @@ export default function HomePage() {
         </div>
       </section>
 
-       <section id="jurados" className="relative z-10 py-16 sm:py-20 lg:py-24 px-4 sm:px-6">
+      <section id="jurados" className="relative z-10 py-16 sm:py-20 lg:py-24 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12 sm:mb-16 lg:mb-20">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#FEB300] mb-6 sm:mb-8">
@@ -828,11 +825,14 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Segunda fileira - 3 jurados centralizados nos espaços entre os de cima */}
+            {/* Segunda fileira - responsiva */}
             <div className="flex justify-center">
               <div
-                className="grid grid-cols-3 gap-8 sm:gap-12 lg:gap-16"
-                style={{ marginLeft: "4rem", marginRight: "4rem" }}
+                className="
+      grid grid-cols-2 md:grid-cols-3
+      gap-8 sm:gap-12 lg:gap-16
+      md:mx-16
+    "
               >
                 {/* Esther Fiaux */}
                 <div className="text-center">
@@ -866,8 +866,8 @@ export default function HomePage() {
                   </h4>
                 </div>
 
-                {/* Anderson Freire */}
-                <div className="text-center">
+                {/* Anderson Freire — sozinho e centralizado no mobile */}
+                <div className="text-center col-span-2 md:col-span-1 mx-auto">
                   <div className="w-32 h-32 sm:w-36 sm:h-36 lg:w-40 lg:h-40 rounded-full mx-auto bg-gray-300 border-4 border-[#FEB300] overflow-hidden mb-4">
                     <img
                       src="/images/ANDERSON FREIRE.png"
@@ -891,7 +891,7 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl sm:text-5xl font-bold text-[#FEB300] text-center mb-4">Regulamento</h2>
           <p className="text-lg sm:text-xl text-white/90 text-center mb-12 sm:mb-16 max-w-4xl mx-auto">
-            Conheça as regras e critérios para participar do Vozes do Norte 2025
+            Conheça as regras e critérios para participar do Festival da Música Paraense 2025
           </p>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-6 sm:mb-8">
@@ -915,14 +915,27 @@ export default function HomePage() {
                   <CheckCircle className="text-[#FEB300] h-4 w-4 sm:h-5 sm:w-5 mr-3 flex-shrink-0" />
                   <span className="text-white text-sm sm:text-base">Apresentar música gospel original ou cover</span>
                 </div>
-                                <div className="flex items-center">
+                <div className="flex items-center">
                   <CheckCircle className="text-[#FEB300] h-4 w-4 sm:h-5 sm:w-5 mr-3 flex-shrink-0" />
                   <span className="text-white text-sm sm:text-base">Apresentações solo, dupla ou trio</span>
                 </div>
                 <div className="flex items-center">
                   <CheckCircle className="text-[#FEB300] h-4 w-4 sm:h-5 sm:w-5 mr-3 flex-shrink-0" />
-                  <span className="text-white text-sm sm:text-base">Não é permitido o uso de músicos próprios ou banda particular</span>
+                  <span className="text-white text-sm sm:text-base">
+                    Não é permitido o uso de músicos próprios ou banda particular
+                  </span>
                 </div>
+              </div>
+              <div className="mt-6 pt-4 border-t border-[#FEB300]/20">
+                <a
+                  href="/REGULAMENTO_FESTIVAL_DA_MUSICA_GOSPEL_PARAENSE.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center px-4 py-2 bg-[#FEB300] text-[#1a237e] font-semibold rounded-lg hover:bg-[#FEB300]/90 transition-colors duration-200 text-sm sm:text-base"
+                >
+                  <FileText className="h-4 w-4 sm:h-5 sm:w-5 mr-2" />
+                  Confira o Regulamento Completo
+                </a>
               </div>
             </div>
 
@@ -953,6 +966,14 @@ export default function HomePage() {
                 <div className="flex items-center">
                   <CheckCircle className="text-[#FEB300] h-4 w-4 sm:h-5 sm:w-5 mr-3 flex-shrink-0" />
                   <span className="text-white text-sm sm:text-base">Originalidade e criatividade</span>
+                </div>
+                <div className="flex items-center">
+                  <CheckCircle className="text-[#FEB300] h-4 w-4 sm:h-5 sm:w-5 mr-3 flex-shrink-0" />
+                  <span className="text-white text-sm sm:text-base">Postura e Apresentação</span>
+                </div>
+                <div className="flex items-center">
+                  <CheckCircle className="text-[#FEB300] h-4 w-4 sm:h-5 sm:w-5 mr-3 flex-shrink-0" />
+                  <span className="text-white text-sm sm:text-base">Confiança e Naturalidade</span>
                 </div>
               </div>
             </div>
@@ -990,8 +1011,9 @@ export default function HomePage() {
                 <h3 className="text-xl sm:text-2xl font-bold text-[#1a237e]">Prêmio</h3>
               </div>
               <p className="text-[#1a237e] text-base sm:text-lg leading-relaxed">
-                O vencedor do Vozes do Norte 2025 terá sua música gravada e lançada profissionalmente pela{" "}
-                <span className="font-bold">Gravadora Todah Music</span>, além de um contrato com a agência<br></br> <span className="font-bold">Vende Shows. </span>
+                O vencedor do Festival da Música Paraense 2025 terá sua música gravada e lançada profissionalmente pela{" "}
+                <span className="font-bold">Gravadora Todah Music</span>, além de um contrato com a agência<br></br>{" "}
+                <span className="font-bold">Vende Shows. </span>
                 (do 2º ao 5º lugar terão premiação em dinheiro e troféu)
               </p>
             </div>
@@ -999,117 +1021,117 @@ export default function HomePage() {
         </div>
       </section>
 
-       <section className="bg-[#001489] text-white py-12 px-6">
-      <div className="max-w-6xl mx-auto text-center space-y-8">
-        {/* Título */}
-        <div>
-          <h2 className="text-2xl md:text-3xl font-bold text-[#FFB800]">
-            PATROCINADORES
-          </h2>
-          <p className="mt-2 text-lg">
-            Agradecemos a todos os parceiros que tornam o Festival possível.
-          </p>
-        </div>
+      <section className="bg-[#001489] text-white py-12 px-6">
+        <div className="max-w-6xl mx-auto text-center space-y-8">
+          {/* Título */}
+          <div>
+            <h2 className="text-2xl md:text-3xl font-bold text-[#FFB800]">
+              PATROCINADORES
+            </h2>
+            <p className="mt-2 text-lg">
+              Agradecemos a todos os parceiros que tornam o Festival possível.
+            </p>
+          </div>
 
-        {/* Logos principais */}
-        <div className="flex justify-center">
-          <Image
-            src="/images/sponsors/pnab.png"
-            alt="PNAB Aldir Blanc"
-            width={200}
-            height={80}
-          />
-        </div>
-
-        {/* Patrocínios */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 items-center mt-8">
-          {/* Patrocínio Master */}
-          <div className="flex flex-col items-center">
-            <span className="text-[#FFB800] font-semibold uppercase mb-2">
-              Patrocínio Master
-            </span>
+          {/* Logos principais */}
+          <div className="flex justify-center">
             <Image
-              src="/images/sponsors/OLIVAL.png"
-              alt="Olival Marques"
-              width={160}
+              src="/images/pnab.png"
+              alt="PNAB Aldir Blanc"
+              width={200}
               height={80}
             />
           </div>
 
-          {/* Patrocínio */}
-          <div className="flex flex-col items-center">
-            <span className="text-[#FFB800] font-semibold uppercase mb-2">
-              Patrocínio
-            </span>
-            <Image
-              src="/images/sponsors/JOSUÉ PAIVA.png"
-              alt="Josué Paiva"
-              width={260}
-              height={120}
-            />
+          {/* Patrocínios */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 items-center mt-8">
+            {/* Patrocínio Master */}
+            <div className="flex flex-col items-center">
+              <span className="text-[#FFB800] font-semibold uppercase mb-2">
+                Patrocínio Master
+              </span>
+              <Image
+                src="/images/OLIVAL.png"
+                alt="Olival Marques"
+                width={160}
+                height={80}
+              />
+            </div>
+
+            {/* Patrocínio */}
+            <div className="flex flex-col items-center">
+              <span className="text-[#FFB800] font-semibold uppercase mb-2">
+                Patrocínio
+              </span>
+              <Image
+                src="/images/JOSUÉ PAIVA.png"
+                alt="Josué Paiva"
+                width={260}
+                height={120}
+              />
+            </div>
+
+            <div className="flex justify-center">
+              <Image
+                src="/images/BENEVIDES.png"
+                alt="Prefeitura de Benevides"
+                width={260}
+                height={80}
+              />
+            </div>
+
+            <div className="flex justify-center">
+              <Image
+                src="/images/portel.png"
+                alt="Prefeitura de Portel"
+                width={260}
+                height={120}
+                className="object-contain"
+              />
+            </div>
           </div>
 
-          <div className="flex justify-center">
-            <Image
-              src="/images/sponsors/BENEVIDES.png"
-              alt="Prefeitura de Benevides"
-              width={260}
-              height={80}
-            />
-          </div>
+          {/* Apoio e Realização */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center mt-12">
+            {/* Apoio */}
+            <div className="flex flex-col items-center">
+              <span className="text-[#FFB800] font-semibold uppercase mb-2">
+                Apoio
+              </span>
+              <Image
+                src="/images/governo do pará.png"
+                alt="Governo do Pará"
+                width={260}
+                height={120}
+                className="object-contain"
+              />
+            </div>
 
-          <div className="flex justify-center">
-            <Image
-              src="/images/sponsors/portel.png"
-              alt="Prefeitura de Portel"
-              width={260}
-              height={120}
-              className="object-contain"
-            />
+            {/* Realização */}
+            <div className="flex flex-col items-center">
+              <span className="text-[#FFB800] font-semibold uppercase mb-2">
+                Realização
+              </span>
+              <Image
+                src="/images/vende shows.png"
+                alt="Vende Shows"
+                width={140}
+                height={60}
+              />
+            </div>
+
+            <div className="flex flex-col items-center">
+              <Image
+                src="/images/ministerio da cultura.png"
+                alt="Ministério da Cultura"
+                width={260}
+                height={120}
+              />
+            </div>
           </div>
         </div>
+      </section>
 
-        {/* Apoio e Realização */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center mt-12">
-          {/* Apoio */}
-          <div className="flex flex-col items-center">
-            <span className="text-[#FFB800] font-semibold uppercase mb-2">
-              Apoio
-            </span>
-            <Image
-              src="/images/sponsors/governo do pará.png"
-              alt="Governo do Pará"
-              width={260}
-              height={120}
-              className="object-contain"
-            />
-          </div>
-
-          {/* Realização */}
-          <div className="flex flex-col items-center">
-            <span className="text-[#FFB800] font-semibold uppercase mb-2">
-              Realização
-            </span>
-            <Image
-              src="/images/sponsors/vende shows.png"
-              alt="Vende Shows"
-              width={140}
-              height={60}
-            />
-          </div>
-
-          <div className="flex flex-col items-center">
-            <Image
-              src="/images/sponsors/ministerio da cultura.png"
-              alt="Ministério da Cultura"
-              width={260}
-              height={120}
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-      
       <section className="relative z-10 py-16 sm:py-20 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto text-center">
           <div className="bg-[#0d1b69] rounded-3xl p-8 sm:p-16">
@@ -1191,7 +1213,7 @@ export default function HomePage() {
 
           <div className="border-t border-white/10 mt-8 sm:mt-12 pt-6 sm:pt-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
             <p className="text-white/60 mb-4 md:mb-0 text-sm sm:text-base">
-              © 2025 Vozes do Norte. Todos os direitos reservados.
+              © 2025 Festival da Música Gospel Paraense. Todos os direitos reservados.
             </p>
             <p className="text-white/60 text-xs sm:text-sm mt-2">Festival de Música Gospel do Pará - Setembro 2025</p>
           </div>
