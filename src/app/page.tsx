@@ -9,7 +9,6 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import Image from "next/image";
-import { get, post } from "@/lib/api"; 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Checkbox } from "@/components/ui/checkbox"
 import {
@@ -53,6 +52,10 @@ export default function HomePage() {
   const [stars, setStars] = useState<
     Array<{ left: number; top: number; width: number; height: number; delay: number; duration: number }>
   >([])
+
+  const API_BASE =
+  process.env.NEXT_PUBLIC_API_BASE_URL ??
+  "https://api.festivaldamusicagospelparaense.com";
 
   const [cities, setCities] = useState<City[]>([])
   const [isLoadingCities, setIsLoadingCities] = useState(true)
@@ -121,7 +124,7 @@ export default function HomePage() {
           controller.abort()
         }, 3000)
 
-        const response = await fetch("/cities", {
+        const response = await fetch(`${API_BASE}/cities`, {
           signal: controller.signal,
           headers: {
             Accept: "application/json",
@@ -257,7 +260,7 @@ export default function HomePage() {
         controller.abort()
       }, 8000)
 
-      const response = await fetch("participants", {
+      const response = await fetch(`${API_BASE}/participants`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
