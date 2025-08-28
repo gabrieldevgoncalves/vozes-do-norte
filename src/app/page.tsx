@@ -757,10 +757,8 @@ export default function HomePage() {
           </div>
 
           <div className="max-w-5xl mx-auto">
-            {/* Primeira fileira - 4 jurados */}
             <div className="flex justify-center mb-8 sm:mb-12">
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 sm:gap-12 lg:gap-16">
-                {/* Leandro Borges */}
                 <div className="text-center">
                   <div className="w-32 h-32 sm:w-36 sm:h-36 lg:w-40 lg:h-40 rounded-full mx-auto bg-gray-300 border-4 border-[#FEB300] overflow-hidden mb-4">
                     <img
@@ -776,7 +774,6 @@ export default function HomePage() {
                   </h4>
                 </div>
 
-                {/* Fernanda Brum */}
                 <div className="text-center">
                   <div className="w-32 h-32 sm:w-36 sm:h-36 lg:w-40 lg:h-40 rounded-full mx-auto bg-gray-300 border-4 border-[#FEB300] overflow-hidden mb-4">
                     <img
@@ -792,7 +789,6 @@ export default function HomePage() {
                   </h4>
                 </div>
 
-                {/* Pastor Lucas */}
                 <div className="text-center">
                   <div className="w-32 h-32 sm:w-36 sm:h-36 lg:w-40 lg:h-40 rounded-full mx-auto bg-gray-300 border-4 border-[#FEB300] overflow-hidden mb-4">
                     <img
@@ -808,7 +804,6 @@ export default function HomePage() {
                   </h4>
                 </div>
 
-                {/* André e Felipe */}
                 <div className="text-center">
                   <div className="w-32 h-32 sm:w-36 sm:h-36 lg:w-40 lg:h-40 rounded-full mx-auto bg-gray-300 border-4 border-[#FEB300] overflow-hidden mb-4">
                     <img
@@ -825,7 +820,6 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Segunda fileira - responsiva */}
             <div className="flex justify-center">
               <div
                 className="
@@ -834,7 +828,6 @@ export default function HomePage() {
       md:mx-16
     "
               >
-                {/* Esther Fiaux */}
                 <div className="text-center">
                   <div className="w-32 h-32 sm:w-36 sm:h-36 lg:w-40 lg:h-40 rounded-full mx-auto bg-gray-300 border-4 border-[#FEB300] overflow-hidden mb-4">
                     <img
@@ -850,7 +843,6 @@ export default function HomePage() {
                   </h4>
                 </div>
 
-                {/* Quatro Por Um */}
                 <div className="text-center">
                   <div className="w-32 h-32 sm:w-36 sm:h-36 lg:w-40 lg:h-40 rounded-full mx-auto bg-gray-300 border-4 border-[#FEB300] overflow-hidden mb-4">
                     <img
@@ -866,7 +858,6 @@ export default function HomePage() {
                   </h4>
                 </div>
 
-                {/* Anderson Freire — sozinho e centralizado no mobile */}
                 <div className="text-center col-span-2 md:col-span-1 mx-auto">
                   <div className="w-32 h-32 sm:w-36 sm:h-36 lg:w-40 lg:h-40 rounded-full mx-auto bg-gray-300 border-4 border-[#FEB300] overflow-hidden mb-4">
                     <img
@@ -1064,7 +1055,7 @@ export default function HomePage() {
                 Patrocínio
               </span>
               <Image
-                src="/images/JOSUÉ PAIVA.png"
+                src="/images/josue-paiva.png"
                 alt="Josué Paiva"
                 width={260}
                 height={120}
@@ -1099,7 +1090,7 @@ export default function HomePage() {
                 Apoio
               </span>
               <Image
-                src="/images/governo do pará.png"
+                src="/images/governo-do-para.png"
                 alt="Governo do Pará"
                 width={260}
                 height={120}
@@ -1113,7 +1104,7 @@ export default function HomePage() {
                 Realização
               </span>
               <Image
-                src="/images/vende shows.png"
+                src="/images/vende-shows.png"
                 alt="Vende Shows"
                 width={140}
                 height={60}
@@ -1122,7 +1113,7 @@ export default function HomePage() {
 
             <div className="flex flex-col items-center">
               <Image
-                src="/images/ministerio da cultura.png"
+                src="/images/ministerio-da-cultura.png"
                 alt="Ministério da Cultura"
                 width={260}
                 height={120}
