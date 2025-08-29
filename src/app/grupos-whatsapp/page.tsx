@@ -22,8 +22,8 @@ export default function GruposWhatsAppPage() {
       link: "https://chat.whatsapp.com/Hvy2zryoBaaIMwZBNZPJkV",
     },
     {
-      cidade: "Marituba",
-      descricao: "Grupo oficial para participantes de Marituba e região",
+      cidade: "Portel",
+      descricao: "Grupo oficial para participantes de Portel e região",
       link: "https://chat.whatsapp.com/HfXIju09BVdKNpkeReLTLc",
     },
   ]
