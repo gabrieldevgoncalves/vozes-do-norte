@@ -24,7 +24,7 @@ export default function GruposWhatsAppPage() {
     {
       cidade: "Portel",
       descricao: "Grupo oficial para participantes de Portel e região",
-      link: "https://chat.whatsapp.com/HfXIju09BVdKNpkeReLTLc",
+      link: "https://chat.whatsapp.com/Hvy2zryoBaaIMwZBNZPJkV",
     },
   ]
 
