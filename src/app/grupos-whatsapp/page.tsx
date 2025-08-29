@@ -51,7 +51,6 @@ export default function GruposWhatsAppPage() {
         </nav>
       </header>
 
-      {/* Main Content */}
       <main className="relative z-10 py-12 px-6">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
@@ -87,7 +86,6 @@ export default function GruposWhatsAppPage() {
             ))}
           </div>
 
-          {/* Informações Importantes */}
           <Card className="bg-white/10 backdrop-blur-sm border-white/20 mt-12">
             <CardHeader>
               <CardTitle className="text-[#FEB300]">Informações Importantes</CardTitle>

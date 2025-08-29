@@ -724,7 +724,7 @@ export default function HomePage() {
                   <Label htmlFor="aceitoRegulamento" className="text-sm leading-relaxed">
                     Declaro ter lido e aceito o{" "}
                     <a
-                      href="/REGULAMENTO_FESTIVAL_DA_MUSICA_GOSPEL_PARAENSE.pdf"
+                      href="/regulamento_festival_da_musica_gospel_paraense_oficial.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-[#1a237e] underline hover:text-[#1a237e]/80"
@@ -922,7 +922,7 @@ export default function HomePage() {
               </div>
               <div className="mt-6 pt-4 border-t border-[#FEB300]/20">
                 <a
-                  href="/REGULAMENTO_FESTIVAL_DA_MUSICA_GOSPEL_PARAENSE.pdf"
+                  href="/regulamento_festival_da_musica_gospel_paraense_oficial.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center px-4 py-2 bg-[#FEB300] text-[#1a237e] font-semibold rounded-lg hover:bg-[#FEB300]/90 transition-colors duration-200 text-sm sm:text-base"
