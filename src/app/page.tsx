@@ -295,9 +295,9 @@ export default function HomePage() {
       }
     } catch (error: any) {
       if (error.name === "AbortError") {
-        alert("Timeout na conexão. Tente novamente mais tarde.")
+        alert("Erro de conexão. Tente novamente mais tarde.")
       } else if (error.message.includes("fetch")) {
-        alert("⚠️ Backend offline - Simulando sucesso para desenvolvimento")
+        alert("⚠️ Backend offline - Fale com o suporte")
 
         setFormData({
           nomeCompleto: "",
