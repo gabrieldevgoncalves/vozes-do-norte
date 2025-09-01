@@ -28,6 +28,7 @@ import {
 } from "lucide-react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+import { getCities, createParticipant } from "@/lib/api"
 
 interface City {
   id: string
@@ -52,10 +53,6 @@ export default function HomePage() {
   const [stars, setStars] = useState<
     Array<{ left: number; top: number; width: number; height: number; delay: number; duration: number }>
   >([])
-
-  const API_BASE =
-  process.env.NEXT_PUBLIC_API_BASE_URL ??
-  "https://api.festivaldamusicagospelparaense.com";
 
   const [cities, setCities] = useState<City[]>([])
   const [isLoadingCities, setIsLoadingCities] = useState(true)
@@ -116,32 +113,13 @@ export default function HomePage() {
     }
   }, [])
 
-  useEffect(() => {
-    const fetchCities = async () => {
-      try {
-        const controller = new AbortController()
-        const timeoutId = setTimeout(() => {
-          controller.abort()
-        }, 3000)
+useEffect(() => {
+    const ctrl = new AbortController()
+    const timeoutId = setTimeout(() => ctrl.abort(), 3000)
 
-        const response = await fetch(`${API_BASE}/cities`, {
-          signal: controller.signal,
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          mode: "cors",
-        })
-
-        clearTimeout(timeoutId)
-
-        if (response.ok) {
-          const citiesData = await response.json()
-          setCities(citiesData)
-        } else {
-          throw new Error(`HTTP ${response.status}: ${response.statusText}`)
-        }
-      } catch (error: any) {
+    getCities(ctrl.signal)
+      .then((citiesData) => setCities(citiesData))
+      .catch(() => {
         const fallbackCities = [
           { id: "550e8400-e29b-41d4-a716-446655440001", name: "Marabá" },
           { id: "550e8400-e29b-41d4-a716-446655440002", name: "Santarém" },
@@ -149,13 +127,19 @@ export default function HomePage() {
           { id: "550e8400-e29b-41d4-a716-446655440004", name: "Benevides" },
         ]
         setCities(fallbackCities)
-      } finally {
+      })
+      .finally(() => {
+        clearTimeout(timeoutId)
         setIsLoadingCities(false)
-      }
-    }
+      })
 
-    fetchCities()
+    return () => {
+      clearTimeout(timeoutId)
+      ctrl.abort()
+    }
   }, [])
+   
+    
 
   const formatCPF = (value: string) => {
     const numbers = value.replace(/\D/g, "")
@@ -254,27 +238,15 @@ export default function HomePage() {
         cityId: formData.cidade,
         reason: formData.testemunho,
       }
+      const ctrl = new AbortController()
+      const timeoutId = setTimeout(() => ctrl.abort(), 8000)
 
-      const controller = new AbortController()
-      const timeoutId = setTimeout(() => {
-        controller.abort()
-      }, 8000)
-
-      const response = await fetch(`${API_BASE}/participants`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify(participantData),
-        signal: controller.signal,
-        mode: "cors",
-      })
+      const response = await createParticipant(participantData, ctrl.signal)
 
       clearTimeout(timeoutId)
 
       if (response.ok) {
-        const result = await response.json()
+        await response.json()
 
         setFormData({
           nomeCompleto: "",
@@ -290,7 +262,7 @@ export default function HomePage() {
         setIsModalOpen(false)
         router.push("/grupos-whatsapp")
       } else {
-        const errorMessage = await response.text()
+          await response.text()
         alert(`Erro ao enviar inscrição. Tente Novamente`)
       }
     } catch (error: any) {
