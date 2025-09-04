@@ -19,7 +19,7 @@ export default function GruposWhatsAppPage() {
     {
       cidade: "Benevides",
       descricao: "Grupo oficial para participantes de Benevides e região",
-      link: "https://chat.whatsapp.com/HfXIju09BVdKNpkeReLTLc",
+      link: "https://chat.whatsapp.com/FG2rhmVVCJO08BNYRzFjFB",
     },
     {
       cidade: "Portel",
