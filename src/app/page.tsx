@@ -538,7 +538,7 @@ export default function HomePage() {
 
           <p className="text-base sm:text-lg lg:text-xl text-white/90 mb-6 sm:mb-8 lg:mb-12 max-w-3xl mx-auto">
             As inscrições para esta edição foram encerradas nas cidades de
-            Benevides, Macapá e Santarém. Seguem abertas para a cidade de
+            Benevides, Marabá e Santarém. Seguem abertas para a cidade de
             Portel.<br></br> Obrigado a todos que participaram!
           </p>
 
