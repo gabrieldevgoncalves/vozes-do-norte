@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -19,41 +19,69 @@ import {
   FileText,
   Menu,
   X,
-} from "lucide-react"
-import Link from "next/link"
-import { useRouter } from "next/navigation"
+} from "lucide-react";
 
-interface City {
-  id: string
-  name: string
-}
+type ApiCity = {
+  id: string;
+  name: string;
+  state: string;
+};
+
+type City = ApiCity & {
+  slug: string;
+};
 
 interface ParticipantRequest {
-  name: string
-  email: string
-  phone: string
-  cpf: string
-  birthDate: string
-  cityId: string
-  reason: string
+  name: string;
+  email: string;
+  phone: string;
+  cpf: string;
+  birthDate: string;
+  cityId: string;
+  reason: string;
+}
+
+const toSlug = (text: string) =>
+  text
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)+/g, "");
+
+async function fetchCities(apiBase: string): Promise<City[]> {
+  const res = await fetch(`${apiBase}/cities`, { cache: "no-store" });
+  if (!res.ok) throw new Error("Falha ao carregar cidades");
+  const data: ApiCity[] = await res.json();
+  return data.map((c) => ({ ...c, slug: c?.name ? toSlug(c.name) : c.id }));
 }
 
 export default function HomePage() {
-  const router = useRouter()
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isNavVisible, setIsNavVisible] = useState(true)
+  const router = useRouter();
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isNavVisible, setIsNavVisible] = useState(true);
   const [stars, setStars] = useState<
-    Array<{ left: number; top: number; width: number; height: number; delay: number; duration: number }>
-  >([])
+    Array<{
+      left: number;
+      top: number;
+      width: number;
+      height: number;
+      delay: number;
+      duration: number;
+    }>
+  >([]);
+
+  const [cities, setCities] = useState<City[]>([]);
+  const [isLoadingCities, setIsLoadingCities] = useState<boolean>(true);
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   const API_BASE =
-  process.env.NEXT_PUBLIC_API_BASE_URL ??
-  "https://api.festivaldamusicagospelparaense.com";
+    process.env.NEXT_PUBLIC_API_BASE_URL ??
+    "https://api.festivaldamusicagospelparaense.com";
 
-  const [cities, setCities] = useState<City[]>([])
-  const [isLoadingCities, setIsLoadingCities] = useState(true)
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     nomeCompleto: "",
     cpf: "",
@@ -63,19 +91,19 @@ export default function HomePage() {
     cidade: "",
     testemunho: "",
     aceitoRegulamento: false,
-  })
+  });
 
   const [ageValidation, setAgeValidation] = useState<{
-    isValid: boolean
-    age: number
-    needsAuthorization: boolean
-    message: string
+    isValid: boolean;
+    age: number;
+    needsAuthorization: boolean;
+    message: string;
   }>({
     isValid: true,
     age: 0,
     needsAuthorization: false,
     message: "",
-  })
+  });
 
   useEffect(() => {
     const generatedStars = Array.from({ length: 150 }, () => ({
@@ -90,7 +118,7 @@ export default function HomePage() {
   }, []);
 
   useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
+    let timeoutId: ReturnType<typeof setTimeout>;
     const handleMouseMove = (e: MouseEvent) => {
       if (e.clientY <= 100) {
         setIsNavVisible(true);
@@ -103,18 +131,18 @@ export default function HomePage() {
     };
     document.addEventListener("mousemove", handleMouseMove);
     return () => {
-      document.removeEventListener("mousemove", handleMouseMove)
-      clearTimeout(timeoutId)
-    }
-  }, [])
+      document.removeEventListener("mousemove", handleMouseMove);
+      clearTimeout(timeoutId);
+    };
+  }, []);
 
   useEffect(() => {
-    const fetchCities = async () => {
+    const load = async () => {
       try {
-        const controller = new AbortController()
-        const timeoutId = setTimeout(() => {
-          controller.abort()
-        }, 3000)
+        setIsLoadingCities(true);
+
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 3000);
 
         const response = await fetch(`${API_BASE}/cities`, {
           signal: controller.signal,
@@ -123,194 +151,130 @@ export default function HomePage() {
             "Content-Type": "application/json",
           },
           mode: "cors",
-        })
+        });
 
-        clearTimeout(timeoutId)
+        clearTimeout(timeoutId);
 
         if (response.ok) {
-          const citiesData = await response.json()
-          setCities(citiesData)
+          const data: ApiCity[] = await response.json();
+          const withSlugs: City[] = data.map((c) => ({
+            ...c,
+            slug: toSlug(c.name),
+          }));
+          setCities(withSlugs);
+          setErrorMessage("");
         } else {
-          throw new Error(`HTTP ${response.status}: ${response.statusText}`)
+          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
         }
-      } catch (error: any) {
-        const fallbackCities = [
-          { id: "550e8400-e29b-41d4-a716-446655440001", name: "Marabá" },
-          { id: "550e8400-e29b-41d4-a716-446655440002", name: "Santarém" },
-          { id: "550e8400-e29b-41d4-a716-446655440003", name: "Portel" },
-          { id: "550e8400-e29b-41d4-a716-446655440004", name: "Benevides" },
-        ]
-        setCities(fallbackCities)
-      } finally {
-        setIsLoadingCities(false)
-      }
-    }
+      } catch (err: unknown) {
+        const fallbackBase: ApiCity[] = [
+          {
+            id: "550e8400-e29b-41d4-a716-446655440001",
+            name: "Marabá",
+            state: "PA",
+          },
+          {
+            id: "550e8400-e29b-41d4-a716-446655440002",
+            name: "Santarém",
+            state: "PA",
+          },
+          {
+            id: "550e8400-e29b-41d4-a716-446655440003",
+            name: "Portel",
+            state: "PA",
+          },
+          {
+            id: "550e8400-e29b-41d4-a716-446655440004",
+            name: "Benevides",
+            state: "PA",
+          },
+        ];
+        const fallback: City[] = fallbackBase.map((c) => ({
+          ...c,
+          slug: toSlug(c.name),
+        }));
+        setCities(fallback);
 
-    fetchCities()
-  }, [])
+        const msg =
+          err instanceof Error
+            ? err.name === "AbortError"
+              ? "Tempo de conexão excedido ao carregar cidades."
+              : err.message
+            : "Erro desconhecido ao carregar cidades.";
+        setErrorMessage(msg);
+      } finally {
+        setIsLoadingCities(false);
+      }
+    };
+
+    load();
+  }, [API_BASE]);
 
   const formatCPF = (value: string) => {
-    const numbers = value.replace(/\D/g, "")
-    return numbers.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")
-  }
+    const numbers = value.replace(/\D/g, "");
+    return numbers.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+  };
 
   const formatPhone = (value: string) => {
-    const numbers = value.replace(/\D/g, "")
-    if (numbers.length <= 10) {
-      return numbers.replace(/(\d{2})(\d{4})(\d{4})/, "($1) $2-$3")
-    }
-    return numbers.replace(/(\d{2})(\d{5})(\d{4})/, "($1) $2-$3")
-  }
+    const numbers = value.replace(/\D/g, "");
+    if (numbers.length <= 10)
+      return numbers.replace(/(\d{2})(\d{4})(\d{4})/, "($1) $2-$3");
+    return numbers.replace(/(\d{2})(\d{5})(\d{4})/, "($1) $2-$3");
+  };
 
   const calculateAge = (birthDate: string) => {
-    const today = new Date()
-    const birth = new Date(birthDate)
-    let age = today.getFullYear() - birth.getFullYear()
-    const monthDiff = today.getMonth() - birth.getMonth()
-
-    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate())) {
-      age--
-    }
-
-    return age
-  }
+    const today = new Date();
+    const birth = new Date(birthDate);
+    let age = today.getFullYear() - birth.getFullYear();
+    const monthDiff = today.getMonth() - birth.getMonth();
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate()))
+      age--;
+    return age;
+  };
 
   const handleBirthDateChange = (value: string) => {
-    setFormData({ ...formData, dataNascimento: value })
-
-    if (value) {
-      const age = calculateAge(value)
-
-      if (age < 12) {
-        setAgeValidation({
-          isValid: false,
-          age,
-          needsAuthorization: false,
-          message: "❌ Idade mínima para participação é de 12 anos completos.",
-        })
-      } else if (age > 100) {
-        setAgeValidation({
-          isValid: false,
-          age,
-          needsAuthorization: false,
-          message: "❌ Idade não permitida.",
-        })
-      }
-      else if (age < 18) {
-        setAgeValidation({
-          isValid: true,
-          age,
-          needsAuthorization: true,
-          message: "⚠️ Menor de 18 anos: Será necessária autorização assinada pelo responsável legal no dia do evento.",
-        })
-      } else {
-        setAgeValidation({
-          isValid: true,
-          age,
-          needsAuthorization: false,
-          message: "✅ Idade válida para participação.",
-        })
-      }
-    } else {
+    setFormData((prev) => ({ ...prev, dataNascimento: value }));
+    if (!value) {
       setAgeValidation({
         isValid: true,
         age: 0,
         needsAuthorization: false,
         message: "",
-      })
+      });
+      return;
     }
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-
-    if (!ageValidation.isValid) {
-      alert("Idade mínima para participação é de 12 anos completos.")
-      return
+    const age = calculateAge(value);
+    if (age < 12) {
+      setAgeValidation({
+        isValid: false,
+        age,
+        needsAuthorization: false,
+        message: "❌ Idade mínima para participação é de 12 anos completos.",
+      });
+    } else if (age > 100) {
+      setAgeValidation({
+        isValid: false,
+        age,
+        needsAuthorization: false,
+        message: "❌ Idade não permitida.",
+      });
+    } else if (age < 18) {
+      setAgeValidation({
+        isValid: true,
+        age,
+        needsAuthorization: true,
+        message:
+          "⚠️ Menor de 18 anos: Será necessária autorização assinada pelo responsável legal no dia do evento.",
+      });
+    } else {
+      setAgeValidation({
+        isValid: true,
+        age,
+        needsAuthorization: false,
+        message: "✅ Idade válida para participação.",
+      });
     }
-
-    if (!formData.aceitoRegulamento) {
-      alert("Você deve aceitar o regulamento para prosseguir com a inscrição.")
-      return
-    }
-
-    setIsSubmitting(true)
-
-    try {
-      const participantData: ParticipantRequest = {
-        name: formData.nomeCompleto,
-        email: formData.email,
-        phone: formData.celular.replace(/\D/g, ""),
-        cpf: formData.cpf.replace(/\D/g, ""),
-        birthDate: formData.dataNascimento,
-        cityId: formData.cidade,
-        reason: formData.testemunho,
-      }
-
-      const controller = new AbortController()
-      const timeoutId = setTimeout(() => {
-        controller.abort()
-      }, 8000)
-
-      const response = await fetch(`${API_BASE}/participants`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify(participantData),
-        signal: controller.signal,
-        mode: "cors",
-      })
-
-      clearTimeout(timeoutId)
-
-      if (response.ok) {
-        const result = await response.json()
-
-        setFormData({
-          nomeCompleto: "",
-          cpf: "",
-          dataNascimento: "",
-          celular: "",
-          email: "",
-          cidade: "",
-          testemunho: "",
-          aceitoRegulamento: false,
-        })
-
-        setIsModalOpen(false)
-        router.push("/grupos-whatsapp")
-      } else {
-        const errorMessage = await response.text()
-        alert(`Erro ao enviar inscrição. Tente Novamente`)
-      }
-    } catch (error: any) {
-      if (error.name === "AbortError") {
-        alert("Erro de conexão. Tente novamente mais tarde.")
-      } else if (error.message.includes("fetch")) {
-        alert("⚠️ Backend offline - Fale com o suporte")
-
-        setFormData({
-          nomeCompleto: "",
-          cpf: "",
-          dataNascimento: "",
-          celular: "",
-          email: "",
-          cidade: "",
-          testemunho: "",
-          aceitoRegulamento: false,
-        })
-
-        setIsModalOpen(false)
-        router.push("/grupos-whatsapp")
-      } else {
-        alert(`Erro inesperado. Tente novamente mais tarde`)
-      }
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
+  };
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -320,13 +284,6 @@ export default function HomePage() {
       setIsNavVisible(false);
     }
   };
-
-  const cities = [
-    { name: "Benevides", slug: "benevides" },
-    { name: "Santarém", slug: "santarem" },
-    { name: "Portel", slug: "portel" },
-    { name: "Marabá", slug: "maraba" },
-  ];
 
   return (
     <div className="min-h-screen bg-[#1a237e] relative overflow-hidden">
@@ -580,12 +537,18 @@ export default function HomePage() {
           </h2>
 
           <p className="text-base sm:text-lg lg:text-xl text-white/90 mb-6 sm:mb-8 lg:mb-12 max-w-3xl mx-auto">
-            As inscrições para esta edição foram encerradas nas cidades de Benevides, Macapá e Santarém. Seguem abertas para a cidade de Portel.<br></br> Obrigado a todos
-            que participaram! 
+            As inscrições para esta edição foram encerradas nas cidades de
+            Benevides, Macapá e Santarém. Seguem abertas para a cidade de
+            Portel.<br></br> Obrigado a todos que participaram!
           </p>
 
           <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSd-Zv2NblV2qkCzf1qAaMOs2weyNH8_zt4bSnpt5vrbIdOyUg/viewform?usp=header" target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-4 py-2 bg-[#FEB300] text-[#1a237e] font-semibold rounded-lg hover:bg-[#FEB300]/90 transition-colors duration-200 text-sm sm:text-base">
+            <a
+              href="https://docs.google.com/forms/d/e/1FAIpQLSd-Zv2NblV2qkCzf1qAaMOs2weyNH8_zt4bSnpt5vrbIdOyUg/viewform?usp=header"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center px-4 py-2 bg-[#FEB300] text-[#1a237e] font-semibold rounded-lg hover:bg-[#FEB300]/90 transition-colors duration-200 text-sm sm:text-base"
+            >
               Inscrições para Portel
             </a>
           </div>
