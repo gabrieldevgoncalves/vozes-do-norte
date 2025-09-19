@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // next.config.ts
 import type { NextConfig } from 'next'
 
@@ -40,3 +41,15 @@ const nextConfig: NextConfig = {
 }
 
 export default nextConfig
+=======
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  async rewrites() {
+    return [
+      { source: "/api/:path*", destination: "http://backend:8080/api/:path*" },
+    ];
+  },
+  images: { remotePatterns: [{ protocol: "https", hostname: "**" }] },
+};
+module.exports = nextConfig;
+>>>>>>> a321a5e (versao portel aberto)

@@ -30,7 +30,6 @@ export default function GruposWhatsAppPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#050444] to-[#0111F5] relative">
-      {/* Header */}
       <header className="relative z-10 p-6">
         <nav className="flex justify-between items-center max-w-7xl mx-auto">
           <Link href="/" className="flex items-center">

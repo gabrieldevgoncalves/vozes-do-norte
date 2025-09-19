@@ -1,4 +1,5 @@
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL || "https://api.festivaldamusicagospelparaense.com";
+<<<<<<< HEAD
 const VERSION = process.env.NEXT_PUBLIC_APP_VERSION ?? '1'
 
 const baseInit: RequestInit = {
@@ -31,3 +32,8 @@ export async function createParticipant<TBody extends object>(
     body: JSON.stringify(data),
   })
 }
+=======
+export const getCities = (signal: AbortSignal) => fetch(`${API_BASE}/cities`).then(r => r.json());
+export const createParticipant = (data: any, signal: AbortSignal) =>
+  fetch(`${API_BASE}/participants`, { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(data) });
+>>>>>>> a321a5e (versao portel aberto)
