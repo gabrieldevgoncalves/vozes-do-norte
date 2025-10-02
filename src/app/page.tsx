@@ -93,6 +93,37 @@ export default function HomePage() {
     aceitoRegulamento: false,
   });
 
+  /** LINKS dos Google Forms para cada cidade */
+  const FORM_URLS: Record<
+    "benevides" | "portel" | "maraba" | "santarem",
+    string
+  > = {
+    benevides: "https://forms.gle/QuFTszHxApUbDi2T9",
+    portel: "https://forms.gle/o6t6RVtioz8FQkZVA",
+    maraba: "https://forms.gle/tJJUUyJdrqhrfywb6",
+    santarem: "https://forms.gle/Rj8YvXR8L1jKXhJf9",
+  };
+
+  /** Datas de abertura:
+   * - Benevides: voto imediato (data antiga para sempre "aberto")
+   * - Portel: 16/10
+   * - Marabá: 22/10
+   * - Santarém: 29/10
+   */
+  const OPEN_FROM: Record<
+    "benevides" | "portel" | "maraba" | "santarem",
+    string
+  > = {
+    benevides: "1970-01-01",
+    portel: "2025-10-16",
+    maraba: "2025-10-22",
+    santarem: "2025-10-29",
+  };
+
+  /** Estado do modal de bloqueio de votação */
+  type CityKey = "benevides" | "portel" | "maraba" | "santarem";
+  const [lockedCity, setLockedCity] = useState<CityKey | null>(null);
+
   const [ageValidation, setAgeValidation] = useState<{
     isValid: boolean;
     age: number;
@@ -285,6 +316,44 @@ export default function HomePage() {
     }
   };
 
+  /** =========================
+   *  Utilidades de Votação
+   *  ========================= */
+  const parseLocalDateBR = (yyyy_mm_dd: string) =>
+    new Date(`${yyyy_mm_dd}T00:00:00-03:00`);
+
+  const isOpen = (yyyy_mm_dd: string) => {
+    const now = new Date();
+    const openAt = parseLocalDateBR(yyyy_mm_dd);
+    return now >= openAt;
+  };
+
+  const formatDDMM = (yyyy_mm_dd: string) => {
+    const d = parseLocalDateBR(yyyy_mm_dd);
+    const dd = String(d.getDate()).padStart(2, "0");
+    const mm = String(d.getMonth() + 1).padStart(2, "0");
+    return `${dd}/${mm}`;
+  };
+
+  const VOTE_CITIES: { key: CityKey; name: string }[] = useMemo(
+    () => [
+      { key: "benevides", name: "Benevides" },
+      { key: "portel", name: "Portel" },
+      { key: "maraba", name: "Marabá" },
+      { key: "santarem", name: "Santarém" },
+    ],
+    []
+  );
+
+  const handleVoteClick = (city: CityKey) => {
+    if (isOpen(OPEN_FROM[city])) {
+      window.open(FORM_URLS[city], "_blank", "noopener,noreferrer");
+    } else {
+      setLockedCity(city);
+      setIsModalOpen(true);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[#1a237e] relative overflow-hidden">
       <div
@@ -446,6 +515,7 @@ export default function HomePage() {
           <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-[#FEB300] text-center mb-3 sm:mb-4">
             Sobre o Festival
           </h2>
+          {/* ... (tudo desta seção permanece exatamente igual) ... */}
           <p className="text-base sm:text-lg lg:text-xl text-white/90 text-center mb-8 sm:mb-12 lg:mb-16 max-w-4xl mx-auto">
             Um festival que conecta vozes, corações e cidades do Norte do Brasil
             em adoração e música.
@@ -453,7 +523,7 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 mb-8 sm:mb-12 lg:mb-16">
             <div className="text-center">
-              <div className="w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 bg-[#FEB300] rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 bg[#FEB300] bg-[#FEB300] rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
                 <Music className="text-[#1a237e] h-7 w-7 sm:h-8 sm:w-8 lg:h-10 lg:w-10" />
               </div>
               <h3 className="text-base sm:text-lg lg:text-xl font-bold text-[#FEB300] mb-2">
@@ -528,32 +598,92 @@ export default function HomePage() {
       </section>
 
       <section
-        id="inscricao"
-        className="relative z-10 py-8 sm:py-12 lg:py-16 px-4 sm:px-6"
+        id="votacao"
+        className="py-16 px-4 sm:px-6 lg:px-8"
       >
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-[#FEB300] mb-4 sm:mb-6">
-            Inscrições encerradas
-          </h2>
+        <div className="max-w-7xl mx-auto">
+          <div className="max-w-3xl text-center mx-auto">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-[#FEB300] mb-3 sm:mb-4">
+              Votação
+            </h2>
+            <p className="text-white/90 text-base sm:text-lg">
+              Escolha sua cidade e vote no seu cantor favorito.
+            </p>
+          </div>
 
-          <p className="text-base sm:text-lg lg:text-xl text-white/90 mb-6 sm:mb-8 lg:mb-12 max-w-3xl mx-auto">
-            As inscrições para esta edição foram encerradas nas cidades de
-            Benevides, Marabá e Santarém. Seguem abertas para a cidade de
-            Portel.<br></br> Obrigado a todos que participaram!
-          </p>
+          <div className="mt-8 grid gap-6 sm:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+            {VOTE_CITIES.map((c) => {
+              return (
+                <div
+                  key={c.key}
+                  className="group relative flex flex-col items-center text-center rounded-2xl border border-white/10 bg-[#0d1b69] px-7 sm:px-8 py-9 sm:py-11 shadow-sm transition-all hover:shadow-md hover:-translate-y-0.5"
+                >
+                  <div className="flex flex-col items-center">
+                    <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center">
+                      <Star className="text-[#FEB300]" />
+                    </div>
+                    <h3 className="mt-3 text-xl font-semibold text-white">
+                      {c.name}
+                    </h3>
+                  </div>
 
-          <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
-            <a
-              href="https://docs.google.com/forms/d/e/1FAIpQLSd-Zv2NblV2qkCzf1qAaMOs2weyNH8_zt4bSnpt5vrbIdOyUg/viewform?usp=header"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center px-4 py-2 bg-[#FEB300] text-[#1a237e] font-semibold rounded-lg hover:bg-[#FEB300]/90 transition-colors duration-200 text-sm sm:text-base"
-            >
-              Inscrições para Portel
-            </a>
+                  <p className="mt-3 text-sm leading-relaxed text-white/80">
+                    Vote em seu cantor favorito de {c.name}.
+                  </p>
+
+                  <Button
+                    onClick={() => handleVoteClick(c.key)}
+                    className="mt-6 w-full rounded-lg px-4 py-2.5 text-sm font-semibold bg-[#FEB300] text-[#1a237e] hover:bg-[#FEB300]/90"
+                  >
+                    Votar
+                  </Button>
+                </div>
+              );
+            })}
           </div>
         </div>
+
+        {isModalOpen && lockedCity && (
+          <div
+            role="dialog"
+            aria-modal="true"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          >
+            <div
+              className="absolute inset-0 bg-black/50"
+              onClick={() => {
+                setIsModalOpen(false);
+                setLockedCity(null);
+              }}
+            />
+            <div className="relative w-full max-w-md rounded-2xl bg-white p-6 shadow-xl">
+              <h3 className="text-lg font-semibold text-gray-900">
+                Votações não liberadas
+              </h3>
+              <p className="mt-2 text-gray-700">
+                As votações para{" "}
+                <strong>
+                  {VOTE_CITIES.find((v) => v.key === lockedCity)?.name}
+                </strong>{" "}
+                estarão abertas a partir de{" "}
+                <strong>{formatDDMM(OPEN_FROM[lockedCity])}</strong>.
+              </p>
+              <div className="mt-5 flex items-center justify-end gap-3">
+                <button
+                  onClick={() => {
+                    setIsModalOpen(false);
+                    setLockedCity(null);
+                  }}
+                  className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                >
+                  Entendi
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </section>
+      {/* =====================  /VOTAÇÃO  ===================== */}
 
       <section
         id="jurados"
@@ -572,6 +702,7 @@ export default function HomePage() {
             </p>
           </div>
 
+          {/* ... (seção jurados permanece igual ao seu arquivo) ... */}
           <div className="max-w-5xl mx-auto">
             <div className="flex justify-center mb-8 sm:mb-12">
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 sm:gap-12 lg:gap-16">
@@ -687,6 +818,7 @@ export default function HomePage() {
         id="regulamento"
         className="relative z-10 py-16 sm:py-20 px-4 sm:px-6"
       >
+        {/* ... seção Regulamento mantida exatamente como você enviou ... */}
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl sm:text-5xl font-bold text-[#FEB300] text-center mb-4">
             Regulamento
@@ -864,6 +996,7 @@ export default function HomePage() {
         id="patrocinadores"
         className="bg-[#001489] text-white py-12 px-6"
       >
+        {/* ... seção Patrocinadores mantida igual ... */}
         <div className="max-w-6xl mx-auto text-center space-y-8">
           <div>
             <h2 className="text-2xl md:text-3xl font-bold text-[#FFB800]">
@@ -909,7 +1042,7 @@ export default function HomePage() {
                 src="/images/prefeitura-benevides.png"
                 alt="Prefeitura de Benevides"
                 width={260}
-                height={80}
+                height={120}
               />
             </div>
             <div className="flex justify-center">
@@ -978,6 +1111,7 @@ export default function HomePage() {
       </section>
 
       <footer className="relative z-10 bg-[#0a1357] py-12 sm:py-16 px-4 sm:px-6">
+        {/* ... footer mantido igual ... */}
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12">
             <div>
