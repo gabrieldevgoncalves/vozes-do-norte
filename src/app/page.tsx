@@ -591,30 +591,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="inscricao" className="relative z-10 py-8 sm:py-12 lg:py-16 px-4 sm:px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-[#FEB300] mb-4 sm:mb-6">
-            Inscrições encerradas
-          </h2>
-
-          <p className="text-base sm:text-lg lg:text-xl text-white/90 mb-6 sm:mb-8 lg:mb-12 max-w-3xl mx-auto">
-            As inscrições para esta edição foram encerradas nas cidades de Benevides, Macapá e Santarém. Seguem abertas para a cidade de
-            Portel.<br /> Obrigado a todos que participaram!
-          </p>
-
-          <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
-            <a
-              href="https://docs.google.com/forms/d/e/1FAIpQLSd-Zv2NblV2qkCzf1qAaMOs2weyNH8_zt4bSnpt5vrbIdOyUg/viewform?usp=header"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center px-4 py-2 bg-[#FEB300] text-[#1a237e] font-semibold rounded-lg hover:bg-[#FEB300]/90 transition-colors duration-200 text-sm sm:text-base"
-            >
-              Inscrições para Portel
-            </a>
-          </div>
-        </div>
-      </section>
-
       {/* =====================  VOTAÇÃO  ===================== */}
       <section id="votacao" className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
