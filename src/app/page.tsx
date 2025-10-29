@@ -93,7 +93,6 @@ export default function HomePage() {
     aceitoRegulamento: false,
   });
 
-  /** LINKS dos Google Forms para cada cidade */
   const FORM_URLS: Record<"benevides" | "portel" | "maraba" | "santarem", string> = {
     benevides: "https://forms.gle/QuFTszHxApUbDi2T9",
     portel: "https://forms.gle/o6t6RVtioz8FQkZVA",
@@ -101,22 +100,18 @@ export default function HomePage() {
     santarem: "https://forms.gle/Rj8YvXR8L1jKXhJf9",
   };
 
-  /** Datas de abertura (Timezone América/Belém -03:00) */
   const OPEN_FROM: Record<"benevides" | "portel" | "maraba" | "santarem", string> = {
-    benevides: "1970-01-01",   // sempre aberto no passado (mas Benevides está ENCERRADA via CLOSED_CITIES)
+    benevides: "1970-01-01",
     portel: "2025-10-16",
     maraba: "2025-10-22",
     santarem: "2025-10-29",
   };
 
-  /** Estado do modal de bloqueio de votação */
   type CityKey = "benevides" | "portel" | "maraba" | "santarem";
   const [lockedCity, setLockedCity] = useState<CityKey | null>(null);
 
-  /** Cidades com votação ENCERRADA (exibe modal específico) */
-  const CLOSED_CITIES: CityKey[] = ["benevides"];
+  const CLOSED_CITIES: CityKey[] = ["benevides", "portel", "maraba"];
 
-  /** Tipo de modal exibido */
   type ModalKind = "upcoming" | "closed";
   const [modalKind, setModalKind] = useState<ModalKind | null>(null);
 
@@ -338,9 +333,7 @@ export default function HomePage() {
     []
   );
 
-  /** Clique no botão "Votar" */
   const handleVoteClick = (city: CityKey) => {
-    // 1) Encerradas -> modal "closed"
     if (CLOSED_CITIES.includes(city)) {
       setLockedCity(city);
       setModalKind("closed");
@@ -348,13 +341,11 @@ export default function HomePage() {
       return;
     }
 
-    // 2) Abertas (pela data) -> abre link
     if (isOpen(OPEN_FROM[city])) {
       window.open(FORM_URLS[city], "_blank", "noopener,noreferrer");
       return;
     }
 
-    // 3) Ainda não liberadas -> modal "upcoming" com data
     setLockedCity(city);
     setModalKind("upcoming");
     setIsModalOpen(true);
@@ -591,7 +582,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* =====================  VOTAÇÃO  ===================== */}
       <section id="votacao" className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="max-w-3xl text-center mx-auto">
@@ -680,7 +670,6 @@ export default function HomePage() {
           </div>
         )}
       </section>
-      {/* =====================  /VOTAÇÃO  ===================== */}
 
       <section id="jurados" className="relative z-10 py-16 sm:py-20 lg:py-24 px-4 sm:px-6">
         <div className="max-w-6xl mx-auto">
