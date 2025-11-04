@@ -93,14 +93,20 @@ export default function HomePage() {
     aceitoRegulamento: false,
   });
 
-  const FORM_URLS: Record<"benevides" | "portel" | "maraba" | "santarem", string> = {
+  const FORM_URLS: Record<
+    "benevides" | "portel" | "maraba" | "santarem",
+    string
+  > = {
     benevides: "https://forms.gle/QuFTszHxApUbDi2T9",
     portel: "https://forms.gle/o6t6RVtioz8FQkZVA",
     maraba: "https://forms.gle/tJJUUyJdrqhrfywb6",
     santarem: "https://forms.gle/Rj8YvXR8L1jKXhJf9",
   };
 
-  const OPEN_FROM: Record<"benevides" | "portel" | "maraba" | "santarem", string> = {
+  const OPEN_FROM: Record<
+    "benevides" | "portel" | "maraba" | "santarem",
+    string
+  > = {
     benevides: "1970-01-01",
     portel: "2025-10-16",
     maraba: "2025-10-22",
@@ -416,7 +422,11 @@ export default function HomePage() {
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className="text-white hover:text-[#FEB300] transition-colors"
               >
-                {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                {isMenuOpen ? (
+                  <X className="h-6 w-6" />
+                ) : (
+                  <Menu className="h-6 w-6" />
+                )}
               </button>
             </div>
           </div>
@@ -503,13 +513,17 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="sobre" className="relative z-10 py-12 sm:py-16 lg:py-20 px-4 sm:px-6">
+      <section
+        id="sobre"
+        className="relative z-10 py-12 sm:py-16 lg:py-20 px-4 sm:px-6"
+      >
         <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-[#FEB300] text-center mb-3 sm:mb-4">
             Sobre o Festival
           </h2>
           <p className="text-base sm:text-lg lg:text-xl text-white/90 text-center mb-8 sm:mb-12 lg:mb-16 max-w-4xl mx-auto">
-            Um festival que conecta vozes, corações e cidades do Norte do Brasil em adoração e música.
+            Um festival que conecta vozes, corações e cidades do Norte do Brasil
+            em adoração e música.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 mb-8 sm:mb-12 lg:mb-16">
@@ -521,7 +535,8 @@ export default function HomePage() {
                 Revelação de Talentos
               </h3>
               <p className="text-white/90 text-xs sm:text-sm">
-                Descobrindo e promovendo novos talentos da música gospel paraense
+                Descobrindo e promovendo novos talentos da música gospel
+                paraense
               </p>
             </div>
             <div className="text-center">
@@ -565,17 +580,22 @@ export default function HomePage() {
             </h3>
             <div className="space-y-3 sm:space-y-4 lg:space-y-6 text-white/90 text-sm sm:text-base lg:text-lg leading-relaxed max-w-4xl mx-auto">
               <p>
-                É o maior festival da música gospel do estado do Pará com o intuito de valorizar a música cristã e revelar para todo o
-                Brasil a nova voz que assinará contrato com uma das maiores gravadoras gospel do Brasil, a Todah Music.
+                É o maior festival da música gospel do estado do Pará com o
+                intuito de valorizar a música cristã e revelar para todo o
+                Brasil a nova voz que assinará contrato com uma das maiores
+                gravadoras gospel do Brasil, a Todah Music.
               </p>
               <p>
-                Durante o festival, participantes de diferentes cidades do Pará se reunirão para competir de forma saudável e edificante,
-                sempre priorizando a adoração e a comunhão. O evento culminará com uma grande final em Belém, onde o vencedor será
-                escolhido e terá a oportunidade única de gravar profissionalmente sua música.
+                Durante o festival, participantes de diferentes cidades do Pará
+                se reunirão para competir de forma saudável e edificante, sempre
+                priorizando a adoração e a comunhão. O evento culminará com uma
+                grande final em Belém, onde o vencedor será escolhido e terá a
+                oportunidade única de gravar profissionalmente sua música.
               </p>
               <p>
-                Mais do que uma competição, o Festival da Música Gospel Paraense é um movimento de união, fé e celebração da rica
-                tradição musical do Norte do Brasil.
+                Mais do que uma competição, o Festival da Música Gospel Paraense
+                é um movimento de união, fé e celebração da rica tradição
+                musical do Norte do Brasil.
               </p>
             </div>
           </div>
@@ -583,95 +603,29 @@ export default function HomePage() {
       </section>
 
       <section id="votacao" className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="max-w-3xl text-center mx-auto">
-            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-[#FEB300] mb-3 sm:mb-4">
-              Votação
-            </h2>
-            <p className="text-white/90 text-base sm:text-lg">
-              Escolha sua cidade e vote no seu cantor favorito.
-            </p>
-          </div>
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-[#FEB300] mb-4">
+            Votações encerradas
+          </h2>
 
-          <div className="mt-8 grid gap-6 sm:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
-            {VOTE_CITIES.map((c) => {
-              const isClosed = CLOSED_CITIES.includes(c.key);
-              return (
-                <div
-                  key={c.key}
-                  className="group relative flex flex-col items-center text-center rounded-2xl border border-white/10 bg-[#0d1b69] px-7 sm:px-8 py-9 sm:py-11 shadow-sm transition-all hover:shadow-md hover:-translate-y-0.5"
-                >
-                  <div className="flex flex-col items-center">
-                    <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center">
-                      <Star className="text-[#FEB300]" />
-                    </div>
-                    <h3 className="mt-3 text-xl font-semibold text-white">{c.name}</h3>
-                  </div>
+          <p className="text-white/90 text-base sm:text-lg lg:text-xl mb-6">
+            A primeira fase de votações do Festival da Música Gospel Paraense
+            foi encerrada. Em breve, você vai acompanhar a próxima etapa na
+            grande semifinal em Belém.
+          </p>
 
-                  <p className="mt-3 text-sm leading-relaxed text-white/80">
-                    {isClosed
-                      ? "As votações de Benevides já foram encerradas."
-                      : `Vote em seu cantor favorito de ${c.name}.`}
-                  </p>
-
-                  <Button
-                    onClick={() => handleVoteClick(c.key)}
-                    className="mt-6 w-full rounded-lg px-4 py-2.5 text-sm font-semibold bg-[#FEB300] text-[#1a237e] hover:bg-[#FEB300]/90"
-                  >
-                    Votar
-                  </Button>
-                </div>
-              );
-            })}
-          </div>
+          <p className="text-white/80 text-sm sm:text-base">
+            Fique ligado nas nossas redes sociais
+            e aqui no site para saber as datas das próximas fases em Belém. Obrigado por fazer parte
+            desta grande celebração da música gospel paraense! 🙌
+          </p>
         </div>
-
-        {isModalOpen && lockedCity && (
-          <div role="dialog" aria-modal="true" className="fixed inset-0 z-50 flex items-center justify-center p-4">
-            <div
-              className="absolute inset-0 bg-black/50"
-              onClick={() => {
-                setIsModalOpen(false);
-                setLockedCity(null);
-                setModalKind(null);
-              }}
-            />
-            <div className="relative w-full max-w-md rounded-2xl bg-white p-6 shadow-xl">
-              <h3 className="text-lg font-semibold text-gray-900">
-                {modalKind === "closed" ? "Votações encerradas" : "Votações não liberadas"}
-              </h3>
-
-              {modalKind === "closed" ? (
-                <p className="mt-2 text-gray-700">
-                  As votações para{" "}
-                  <strong>{VOTE_CITIES.find((v) => v.key === lockedCity)?.name}</strong> já foram encerradas.
-                </p>
-              ) : (
-                <p className="mt-2 text-gray-700">
-                  As votações para{" "}
-                  <strong>{VOTE_CITIES.find((v) => v.key === lockedCity)?.name}</strong> estarão abertas a partir de{" "}
-                  <strong>{formatDDMM(OPEN_FROM[lockedCity])}</strong>.
-                </p>
-              )}
-
-              <div className="mt-5 flex items-center justify-end gap-3">
-                <button
-                  onClick={() => {
-                    setIsModalOpen(false);
-                    setLockedCity(null);
-                    setModalKind(null);
-                  }}
-                  className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-                >
-                  Entendi
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
       </section>
 
-      <section id="jurados" className="relative z-10 py-16 sm:py-20 lg:py-24 px-4 sm:px-6">
+      <section
+        id="jurados"
+        className="relative z-10 py-16 sm:py-20 lg:py-24 px-4 sm:px-6"
+      >
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12 sm:mb-16 lg:mb-20">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#FEB300] mb-6 sm:mb-8">
@@ -679,8 +633,9 @@ export default function HomePage() {
             </h2>
             <p className="text-base sm:text-lg lg:text-xl text-white/90 max-w-4xl mx-auto">
               Cada cidade terá um quantitativo de{" "}
-              <span className="text-[#FEB300] font-bold">5 a 7 jurados</span>, entre eles os representantes da gravadora e nomes da música
-              gospel como:
+              <span className="text-[#FEB300] font-bold">5 a 7 jurados</span>,
+              entre eles os representantes da gravadora e nomes da música gospel
+              como:
             </p>
           </div>
 
@@ -809,13 +764,17 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="regulamento" className="relative z-10 py-16 sm:py-20 px-4 sm:px-6">
+      <section
+        id="regulamento"
+        className="relative z-10 py-16 sm:py-20 px-4 sm:px-6"
+      >
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl sm:text-5xl font-bold text-[#FEB300] text-center mb-4">
             Regulamento
           </h2>
           <p className="text-lg sm:text-xl text-white/90 text-center mb-12 sm:mb-16 max-w-4xl mx-auto">
-            Conheça as regras e critérios para participar do Festival da Música Paraense 2025
+            Conheça as regras e critérios para participar do Festival da Música
+            Paraense 2025
           </p>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-6 sm:mb-8">
@@ -824,28 +783,41 @@ export default function HomePage() {
                 <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#FEB300] rounded-full flex items-center justify-center mr-4">
                   <Users className="text-[#1a237e] h-5 w-5 sm:h-6 sm:w-6" />
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-[#FEB300]">Requisitos de Participação</h3>
+                <h3 className="text-xl sm:text-2xl font-bold text-[#FEB300]">
+                  Requisitos de Participação
+                </h3>
               </div>
               <div className="space-y-3">
                 <div className="flex items-center">
                   <CheckCircle className="text-[#FEB300] h-4 w-4 sm:h-5 sm:w-5 mr-3 flex-shrink-0" />
-                  <span className="text-white text-sm sm:text-base">Ser maior de 12 anos</span>
+                  <span className="text-white text-sm sm:text-base">
+                    Ser maior de 12 anos
+                  </span>
                 </div>
                 <div className="flex items-center">
                   <CheckCircle className="text-[#FEB300] h-4 w-4 sm:h-5 sm:w-5 mr-3 flex-shrink-0" />
-                  <span className="text-white text-sm sm:text-base">Residir ou não no estado do Pará</span>
+                  <span className="text-white text-sm sm:text-base">
+                    Residir ou não no estado do Pará
+                  </span>
                 </div>
                 <div className="flex items-center">
                   <CheckCircle className="text-[#FEB300] h-4 w-4 sm:h-5 sm:w-5 mr-3 flex-shrink-0" />
-                  <span className="text-white text-sm sm:text-base">Apresentar música gospel original ou cover</span>
+                  <span className="text-white text-sm sm:text-base">
+                    Apresentar música gospel original ou cover
+                  </span>
                 </div>
                 <div className="flex items-center">
                   <CheckCircle className="text-[#FEB300] h-4 w-4 sm:h-5 sm:w-5 mr-3 flex-shrink-0" />
-                  <span className="text-white text-sm sm:text-base">Apresentações solo, dupla ou trio</span>
+                  <span className="text-white text-sm sm:text-base">
+                    Apresentações solo, dupla ou trio
+                  </span>
                 </div>
                 <div className="flex items-center">
                   <CheckCircle className="text-[#FEB300] h-4 w-4 sm:h-5 sm:w-5 mr-3 flex-shrink-0" />
-                  <span className="text-white text-sm sm:text-base">Não é permitido o uso de músicos próprios ou banda particular</span>
+                  <span className="text-white text-sm sm:text-base">
+                    Não é permitido o uso de músicos próprios ou banda
+                    particular
+                  </span>
                 </div>
               </div>
               <div className="mt-6 pt-4 border-t border-[#FEB300]/20">
@@ -866,36 +838,52 @@ export default function HomePage() {
                 <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#FEB300] rounded-full flex items-center justify-center mr-4">
                   <Award className="text-[#1a237e] h-5 w-5 sm:h-6 sm:w-6" />
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-[#FEB300]">Critérios de Avaliação</h3>
+                <h3 className="text-xl sm:text-2xl font-bold text-[#FEB300]">
+                  Critérios de Avaliação
+                </h3>
               </div>
               <div className="space-y-3">
                 <div className="flex items-center">
                   <CheckCircle className="text-[#FEB300] h-4 w-4 sm:h-5 sm:w-5 mr-3 flex-shrink-0" />
-                  <span className="text-white text-sm sm:text-base">Qualidade vocal, afinação e técnica</span>
+                  <span className="text-white text-sm sm:text-base">
+                    Qualidade vocal, afinação e técnica
+                  </span>
                 </div>
                 <div className="flex items-center">
                   <CheckCircle className="text-[#FEB300] h-4 w-4 sm:h-5 sm:w-5 mr-3 flex-shrink-0" />
-                  <span className="text-white text-sm sm:text-base">Interpretação e expressão</span>
+                  <span className="text-white text-sm sm:text-base">
+                    Interpretação e expressão
+                  </span>
                 </div>
                 <div className="flex items-center">
                   <CheckCircle className="text-[#FEB300] h-4 w-4 sm:h-5 sm:w-5 mr-3 flex-shrink-0" />
-                  <span className="text-white text-sm sm:text-base">Presença de palco</span>
+                  <span className="text-white text-sm sm:text-base">
+                    Presença de palco
+                  </span>
                 </div>
                 <div className="flex items-center">
                   <CheckCircle className="text-[#FEB300] h-4 w-4 sm:h-5 sm:w-5 mr-3 flex-shrink-0" />
-                  <span className="text-white text-sm sm:text-base">Conexão com o público</span>
+                  <span className="text-white text-sm sm:text-base">
+                    Conexão com o público
+                  </span>
                 </div>
                 <div className="flex items-center">
                   <CheckCircle className="text-[#FEB300] h-4 w-4 sm:h-5 sm:w-5 mr-3 flex-shrink-0" />
-                  <span className="text-white text-sm sm:text-base">Originalidade e criatividade</span>
+                  <span className="text-white text-sm sm:text-base">
+                    Originalidade e criatividade
+                  </span>
                 </div>
                 <div className="flex items-center">
                   <CheckCircle className="text-[#FEB300] h-4 w-4 sm:h-5 sm:w-5 mr-3 flex-shrink-0" />
-                  <span className="text-white text-sm sm:text-base">Postura e Apresentação</span>
+                  <span className="text-white text-sm sm:text-base">
+                    Postura e Apresentação
+                  </span>
                 </div>
                 <div className="flex items-center">
                   <CheckCircle className="text-[#FEB300] h-4 w-4 sm:h-5 sm:w-5 mr-3 flex-shrink-0" />
-                  <span className="text-white text-sm sm:text-base">Confiança e Naturalidade</span>
+                  <span className="text-white text-sm sm:text-base">
+                    Confiança e Naturalidade
+                  </span>
                 </div>
               </div>
             </div>
@@ -907,17 +895,26 @@ export default function HomePage() {
                 <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#FEB300] rounded-full flex items-center justify-center mr-4">
                   <Calendar className="text-[#1a237e] h-5 w-5 sm:h-6 sm:w-6" />
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-[#FEB300]">Cronograma</h3>
+                <h3 className="text-xl sm:text-2xl font-bold text-[#FEB300]">
+                  Cronograma
+                </h3>
               </div>
               <div className="space-y-4 text-white">
                 <div>
-                  <span className="font-bold text-[#FEB300]">Votações Regionais:</span> Setembro 2025
+                  <span className="font-bold text-[#FEB300]">
+                    Votações Regionais:
+                  </span>{" "}
+                  Setembro 2025
                 </div>
                 <div>
-                  <span className="font-bold text-[#FEB300]">Grande Final:</span> Dezembro 2025 (Belém)
+                  <span className="font-bold text-[#FEB300]">
+                    Grande Final:
+                  </span>{" "}
+                  Dezembro 2025 (Belém)
                 </div>
                 <div>
-                  <span className="font-bold text-[#FEB300]">Gravação:</span> Dezembro 2025
+                  <span className="font-bold text-[#FEB300]">Gravação:</span>{" "}
+                  Dezembro 2025
                 </div>
               </div>
             </div>
@@ -927,11 +924,15 @@ export default function HomePage() {
                 <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#1a237e] rounded-full flex items-center justify-center mr-4">
                   <Medal className="text-[#FEB300] h-5 w-5 sm:h-6 sm:w-6" />
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-[#1a237e]">Prêmio</h3>
+                <h3 className="text-xl sm:text-2xl font-bold text-[#1a237e]">
+                  Prêmio
+                </h3>
               </div>
               <p className="text-[#1a237e] text-base sm:text-lg leading-relaxed">
-                O vencedor do Festival da Música Paraense 2025 terá sua música gravada e lançada profissionalmente pela
-                <span className="font-bold"> Gravadora Todah Music</span>, além de um contrato com a agência
+                O vencedor do Festival da Música Paraense 2025 terá sua música
+                gravada e lançada profissionalmente pela
+                <span className="font-bold"> Gravadora Todah Music</span>, além
+                de um contrato com a agência
                 <span className="font-bold"> Vende Shows.</span>
                 (do 2º ao 5º lugar terão premiação em dinheiro e troféu)
               </p>
@@ -940,26 +941,57 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="patrocinadores" className="bg-[#001489] text-white py-12 px-6">
+      <section
+        id="patrocinadores"
+        className="bg-[#001489] text-white py-12 px-6"
+      >
         <div className="max-w-6xl mx-auto text-center space-y-8">
           <div>
-            <h2 className="text-2xl md:text-3xl font-bold text-[#FFB800]">PATROCINADORES</h2>
-            <p className="mt-2 text-lg">Agradecemos a todos os parceiros que tornam o Festival possível.</p>
+            <h2 className="text-2xl md:text-3xl font-bold text-[#FFB800]">
+              PATROCINADORES
+            </h2>
+            <p className="mt-2 text-lg">
+              Agradecemos a todos os parceiros que tornam o Festival possível.
+            </p>
           </div>
           <div className="flex justify-center">
-            <Image src="/images/pnab.png" alt="PNAB Aldir Blanc" width={200} height={80} />
+            <Image
+              src="/images/pnab.png"
+              alt="PNAB Aldir Blanc"
+              width={200}
+              height={80}
+            />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 items-center mt-8">
             <div className="flex flex-col items-center">
-              <span className="text-[#FFB800] font-semibold uppercase mb-2">Patrocínio Master</span>
-              <Image src="/images/olival-marques.png" alt="Olival Marques" width={160} height={80} />
+              <span className="text-[#FFB800] font-semibold uppercase mb-2">
+                Patrocínio Master
+              </span>
+              <Image
+                src="/images/olival-marques.png"
+                alt="Olival Marques"
+                width={160}
+                height={80}
+              />
             </div>
             <div className="flex flex-col items-center">
-              <span className="text-[#FFB800] font-semibold uppercase mb-2">Patrocínio</span>
-              <Image src="/images/josue-paiva.png" alt="Josué Paiva" width={260} height={120} />
+              <span className="text-[#FFB800] font-semibold uppercase mb-2">
+                Patrocínio
+              </span>
+              <Image
+                src="/images/josue-paiva.png"
+                alt="Josué Paiva"
+                width={260}
+                height={120}
+              />
             </div>
             <div className="flex justify-center">
-              <Image src="/images/prefeitura-benevides.png" alt="Prefeitura de Benevides" width={260} height={120} />
+              <Image
+                src="/images/prefeitura-benevides.png"
+                alt="Prefeitura de Benevides"
+                width={260}
+                height={120}
+              />
             </div>
             <div className="flex justify-center">
               <Image
@@ -973,7 +1005,9 @@ export default function HomePage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center mt-12">
             <div className="flex flex-col items-center">
-              <span className="text-[#FFB800] font-semibold uppercase mb-2">Apoio</span>
+              <span className="text-[#FFB800] font-semibold uppercase mb-2">
+                Apoio
+              </span>
               <Image
                 src="/images/governo-do-para.png"
                 alt="Governo do Pará"
@@ -983,11 +1017,23 @@ export default function HomePage() {
               />
             </div>
             <div className="flex flex-col items-center">
-              <span className="text-[#FFB800] font-semibold uppercase mb-2">Realização</span>
-              <Image src="/images/vende-shows.png" alt="Vende Shows" width={140} height={60} />
+              <span className="text-[#FFB800] font-semibold uppercase mb-2">
+                Realização
+              </span>
+              <Image
+                src="/images/vende-shows.png"
+                alt="Vende Shows"
+                width={140}
+                height={60}
+              />
             </div>
             <div className="flex justify-center">
-              <Image src="/images/ministerio-da-cultura.png" alt="Ministério da Cultura" width={260} height={120} />
+              <Image
+                src="/images/ministerio-da-cultura.png"
+                alt="Ministério da Cultura"
+                width={260}
+                height={120}
+              />
             </div>
           </div>
         </div>
@@ -996,9 +1042,12 @@ export default function HomePage() {
       <section className="relative z-10 py-16 sm:py-20 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto text-center">
           <div className="bg-[#0d1b69] rounded-3xl p-8 sm:p-16">
-            <h2 className="text-2xl sm:text-4xl font-bold text-white mb-6">Quer ser nosso parceiro?</h2>
+            <h2 className="text-2xl sm:text-4xl font-bold text-white mb-6">
+              Quer ser nosso parceiro?
+            </h2>
             <p className="text-lg sm:text-xl text-white/90 mb-8">
-              Junte-se a nós nesta celebração da música gospel paraense e ajude a revelar novos talentos.
+              Junte-se a nós nesta celebração da música gospel paraense e ajude
+              a revelar novos talentos.
             </p>
             <Link href="/contatos">
               <Button className="bg-[#FEB300] text-[#1a237e] hover:bg-[#FEB300]/90 text-base sm:text-lg px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold">
@@ -1023,59 +1072,91 @@ export default function HomePage() {
                 />
               </div>
               <p className="text-white/80 text-base sm:text-lg leading-relaxed mb-6">
-                O maior festival de música gospel do Pará, revelando novos talentos e celebrando a fé através da música. Uma oportunidade
+                O maior festival de música gospel do Pará, revelando novos
+                talentos e celebrando a fé através da música. Uma oportunidade
                 única para artistas locais brilharem no cenário nacional.
               </p>
             </div>
             <div>
-              <h4 className="text-xl sm:text-2xl font-bold text-[#FEB300] mb-6">Contato</h4>
+              <h4 className="text-xl sm:text-2xl font-bold text-[#FEB300] mb-6">
+                Contato
+              </h4>
               <div className="space-y-4">
                 <div className="flex items-center space-x-3">
                   <Phone className="text-[#FEB300] h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0" />
                   <div>
-                    <p className="text-white font-medium text-sm sm:text-base">Telefone</p>
-                    <p className="text-white/80 text-sm sm:text-base">(91) 99371-4669</p>
+                    <p className="text-white font-medium text-sm sm:text-base">
+                      Telefone
+                    </p>
+                    <p className="text-white/80 text-sm sm:text-base">
+                      (91) 99371-4669
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-center space-x-3">
                   <Mail className="text-[#FEB300] h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0" />
                   <div>
-                    <p className="text-white font-medium text-sm sm:text-base">E-mail</p>
-                    <p className="text-white/80 text-sm sm:text-base">amaismucicoficial@mail.com</p>
+                    <p className="text-white font-medium text-sm sm:text-base">
+                      E-mail
+                    </p>
+                    <p className="text-white/80 text-sm sm:text-base">
+                      amaismucicoficial@mail.com
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-center space-x-3">
                   <MapPin className="text-[#FEB300] h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0" />
                   <div>
-                    <p className="text-white font-medium text-sm sm:text-base">Horário</p>
-                    <p className="text-white/80 text-sm sm:text-base">Seg-Sex: 7:00 - 18:00</p>
+                    <p className="text-white font-medium text-sm sm:text-base">
+                      Horário
+                    </p>
+                    <p className="text-white/80 text-sm sm:text-base">
+                      Seg-Sex: 7:00 - 18:00
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
             <div>
-              <h4 className="text-xl sm:text-2xl font-bold text-[#FEB300] mb-6">Equipe</h4>
+              <h4 className="text-xl sm:text-2xl font-bold text-[#FEB300] mb-6">
+                Equipe
+              </h4>
               <div className="space-y-4">
                 <div>
-                  <p className="text-white font-medium text-sm sm:text-base">Produtor do Evento</p>
-                  <p className="text-white/80 text-sm sm:text-base">@arlonoliveira</p>
+                  <p className="text-white font-medium text-sm sm:text-base">
+                    Produtor do Evento
+                  </p>
+                  <p className="text-white/80 text-sm sm:text-base">
+                    @arlonoliveira
+                  </p>
                 </div>
                 <div>
-                  <p className="text-white font-medium text-sm sm:text-base">Entretenimento</p>
-                  <p className="text-white/80 text-sm sm:text-base">@vendeshows</p>
+                  <p className="text-white font-medium text-sm sm:text-base">
+                    Entretenimento
+                  </p>
+                  <p className="text-white/80 text-sm sm:text-base">
+                    @vendeshows
+                  </p>
                 </div>
                 <div>
-                  <p className="text-white font-medium text-sm sm:text-base">Realização</p>
-                  <p className="text-white/80 text-sm sm:text-base">Amais Music Entretenimento</p>
+                  <p className="text-white font-medium text-sm sm:text-base">
+                    Realização
+                  </p>
+                  <p className="text-white/80 text-sm sm:text-base">
+                    Amais Music Entretenimento
+                  </p>
                 </div>
               </div>
             </div>
           </div>
           <div className="border-t border-white/10 mt-8 sm:mt-12 pt-6 sm:pt-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
             <p className="text-white/60 mb-4 md:mb-0 text-sm sm:text-base">
-              © 2025 Festival da Música Gospel Paraense. Todos os direitos reservados.
+              © 2025 Festival da Música Gospel Paraense. Todos os direitos
+              reservados.
             </p>
-            <p className="text-white/60 text-xs sm:text-sm mt-2">Festival de Música Gospel do Pará - Setembro 2025</p>
+            <p className="text-white/60 text-xs sm:text-sm mt-2">
+              Festival de Música Gospel do Pará - Setembro 2025
+            </p>
           </div>
         </div>
       </footer>
