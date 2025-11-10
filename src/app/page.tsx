@@ -602,23 +602,65 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="votacao" className="py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-[#FEB300] mb-4">
-            Votações encerradas
-          </h2>
+      <section
+        id="votacao"
+        className="relative z-10 py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8"
+      >
+        <div className="max-w-5xl mx-auto">
+          <div className="rounded-3xl bg-[#0d1b69]/90  shadow-2xl px-6 sm:px-10 lg:px-14 py-10 sm:py-14 lg:py-16 text-center">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-[#FEB300] mb-4 sm:mb-6">
+              Votações Encerradas
+            </h2>
 
-          <p className="text-white/90 text-base sm:text-lg lg:text-xl mb-6">
-            A primeira fase de votações do Festival da Música Gospel Paraense
-            foi encerrada. Em breve, você vai acompanhar a próxima etapa na
-            grande semifinal em Belém.
-          </p>
+            <p className="text-white/90 text-base sm:text-lg lg:text-xl max-w-3xl mx-auto mb-4">
+              A primeira fase do Festival da Música Gospel Paraense foi um
+              sucesso! 🙌
+            </p>
+            <p className="text-white/80 text-sm sm:text-base lg:text-lg max-w-3xl mx-auto mb-2">
+              Agora, os holofotes se voltam para a grande{" "}
+              <span className="font-semibold text-[#FEB300]">
+                semifinal e final em Belém
+              </span>
+              . Será o momento de descobrir quem vai representar o Pará na cena
+              gospel nacional.
+            </p>
+            <p className="text-white/80 text-sm sm:text-base max-w-3xl mx-auto mb-8">
+              Garanta seu lugar nessa noite histórica de adoração, música e
+              emoção ao vivo. Os ingressos são limitados.
+            </p>
 
-          <p className="text-white/80 text-sm sm:text-base">
-            Fique ligado nas nossas redes sociais
-            e aqui no site para saber as datas das próximas fases em Belém. Obrigado por fazer parte
-            desta grande celebração da música gospel paraense! 🙌
-          </p>
+            <div className="mt-6 flex justify-center">
+              <a
+                href="https://www.sympla.com.br/evento/festival-da-musica-gospel-paraense-nair-nany-em-belem/3205148?share_id=whatsapp"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="
+            inline-flex items-center justify-center
+            w-full max-w-xl
+            px-10 sm:px-14 lg:px-20
+            py-4 sm:py-5 lg:py-6
+            rounded-full
+            bg-[#FEB300]
+            border-4 border-white
+            text-[#1a237e]
+            text-lg sm:text-2xl lg:text-3xl
+            font-extrabold tracking-wide uppercase
+            shadow-xl
+            hover:bg-[#FFD24A]
+            hover:shadow-2xl
+            hover:-translate-y-0.5
+            transition-all duration-200
+          "
+              >
+                GARANTA SEU INGRESSO
+              </a>
+            </div>
+
+            <p className="mt-4 text-xs sm:text-sm text-white/60">
+              *Venda de ingressos realizada com segurança pela plataforma
+              Sympla.
+            </p>
+          </div>
         </div>
       </section>
 
